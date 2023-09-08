@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&family=Viga&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Poppins", sans-serif;
+}
+
+@layer components{
+  .input{
+    @apply py-2 text-slate-800 outline-0 rounded-lg placeholder:text-slate-500 px-2 border border-green-600
+  }
+}
