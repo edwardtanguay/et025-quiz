@@ -1,7 +1,7 @@
 export interface IQuestions {
-  id: string;
+  id: number;
   question: string;
-  answers: string[] | boolean[];
-  correct_answer: string[] | boolean[];
+  answers: string[];
+  correct_answer: string[];
   score: number;
 }

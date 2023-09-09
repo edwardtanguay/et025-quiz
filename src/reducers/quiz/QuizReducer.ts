@@ -9,6 +9,7 @@ interface IQuiz {
   error: string | null;
   fullName: string;
   email: string;
+  userAnswer:Record<number,string>
 }
 
 export const fetchQuiz = createAsyncThunk("/quiz/fetchQuiz", async () => {
@@ -22,6 +23,7 @@ const initialState: IQuiz = {
   error: null,
   fullName: "",
   email: "",
+  userAnswer:{}
 };
 
 const quizSlice = createSlice({
@@ -34,6 +36,9 @@ const quizSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
+    setUserAnswer:(state,action)=>{
+      state.userAnswer=action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -54,5 +59,5 @@ const quizSlice = createSlice({
 export const selectAllQuestions = (state: RootState) =>
   state.questions.questions;
 
-export const { setEmail, setFullName } = quizSlice.actions;
+export const { setEmail, setFullName,setUserAnswer } = quizSlice.actions;
 export default quizSlice.reducer;

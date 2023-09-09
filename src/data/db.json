@@ -2,72 +2,72 @@
   "questions": [
     {
       "question": "Die Erde ist der größte Planet des Sonnensystems.",
-      "answers": [true, false],
-      "correct_answer": [false],
-      "id": "1",
+      "answers": ["true", "false"],
+      "correct_answer": ["false"],
+      "id": 1,
       "score": 5
     },
     {
       "question": "Die Hauptstadt Brasiliens ist?",
       "answers": ["Rio de Janeiro", "Brasilia", "Salvador", "Porto Alegre"],
       "correct_answer": ["Brasilia"],
-      "id": "2",
+      "id": 2,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Erdgas?",
       "answers": ["Russland", "USA", "Iran", "Katar"],
       "correct_answers": ["Russland", "USA"],
-      "id": "3",
+      "id": 3,
       "score": 5
     },
     {
       "question": "Welches Land hat seine Hauptstadt in Teheran?",
       "answers": ["Iran", "Türkei", "Irak", "Syrien"],
       "correct_answer": ["Iran"],
-      "id": "4",
+      "id": 4,
       "score": 5
     },
     {
       "question": "Welches Land ist das bevölkerungsreichste der Welt?",
       "answers": ["China", "Indien", "Vereinigte Staaten", "Indonesien"],
       "correct_answer": ["China"],
-      "id": "5",
+      "id": 5,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Weizen?",
       "answers": ["China", "Indien", "Russland", "USA"],
       "correct_answers": ["China", "Indien"],
-      "id": "6",
+      "id": 6,
       "score": 5
     },
     {
       "question": "Welches Land ist das größte der Welt nach Fläche?",
       "answers": ["Russland", "Kanada", "China", "Vereinigte Staaten"],
       "correct_answer": ["Russland"],
-      "id": "7",
+      "id": 7,
       "score": 5
     },
     {
       "question": "Die Hauptstadt von Deutschland ist Berlin.",
-      "answers": [true, false],
-      "correct_answer": [true],
-      "id": "8",
+      "answers": ["true", "false"],
+      "correct_answer": ["true"],
+      "id": 8,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Reis?",
       "answers": ["China", "Indien", "Indonesien", "Bangladesch"],
       "correct_answers": ["China", "Indien"],
-      "id": "9",
+      "id": 9,
       "score": 5
     },
     {
       "question": "Wie hoch ist der höchste Berg der Welt?",
       "answers": ["8848 Meter", "6956 Meter", "5895 Meter", "5642 Meter"],
       "correct_answer": ["8848 Meter"],
-      "id": "10",
+      "id": 10,
       "score": 5
     },
     {
@@ -79,14 +79,14 @@
         "6259 Kilometer"
       ],
       "correct_answer": ["6650 Kilometer"],
-      "id": "11",
+      "id": 11,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Kaffee?",
       "answers": ["Brasilien", "Kolumbien", "Vietnam", "Indonesien"],
       "correct_answers": ["Brasilien", "Kolumbien"],
-      "id": "12",
+      "id": 12,
       "score": 5
     },
     {
@@ -98,42 +98,42 @@
         "Chicago"
       ],
       "correct_answer": ["Washington, D.C."],
-      "id": "13",
+      "id": 13,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Baumwolle?",
       "answers": ["Indien", "China", "USA", "Pakistan"],
       "correct_answers": ["Indien", "China"],
-      "id": "14",
+      "id": 14,
       "score": 5
     },
     {
       "question": "Die Hauptstadt Frankreichs ist?",
       "answers": ["Paris", "Marseille", "Lille", "Nizza"],
       "correct_answer": ["Paris"],
-      "id": "15",
+      "id": 15,
       "score": 5
     },
     {
       "question": "Der Mount Everest ist der höchste Berg der Welt.",
-      "answers": [true, false],
-      "correct_answer": [true],
-      "id": "16",
+      "answers": ["true", "false"],
+      "correct_answer": ["true"],
+      "id": 16,
       "score": 5
     },
     {
       "question": "Die Hauptstadt Englands ist?",
       "answers": ["London", "Birmingham", "Liverpool", "Manchester"],
       "correct_answer": ["London"],
-      "id": "17",
+      "id": 17,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Tee?",
       "answers": ["China", "Indien", "Indonesien", "Sri Lanka"],
       "correct_answers": ["China", "Indien"],
-      "id": "18",
+      "id": 18,
       "score": 5
     },
 
@@ -141,14 +141,14 @@
       "question": "Die Hauptstadt Deutschlands ist?",
       "answers": ["Berlin", "Frankfurt am Main", "München", "Hamburg"],
       "correct_answer": ["Berlin"],
-      "id": "19",
+      "id": 19,
       "score": 5
     },
     {
       "question": "Welche beiden Länder sind die größten Produzenten von Autos?",
       "answers": ["China", "Japan", "USA", "Deutschland"],
       "correct_answers": ["China", "Japan"],
-      "id": "20",
+      "id": 20,
       "score": 5
     }
   ]
