@@ -11,6 +11,10 @@ import { useEffect } from "react";
 
 const Questions = () => {
   const dispatch = useDispatch();
+  const getType = (answer: string) => {
+    return `${answer === "true" || answer === "false" ? "radio" : "checkbox"}`;
+  };
+
   const email = useSelector((state: RootState) => state.questions.email);
   const fullName = useSelector((state: RootState) => state.questions.fullName);
   const selectedAnswers = useSelector(
@@ -18,29 +22,29 @@ const Questions = () => {
   );
   const questions = useSelector(selectAllQuestions);
 
-    const handleUserAnswer = (
-      questionId: number,
-      userAnswer: string,
-      checked: boolean,
-      type: string
-    ) => {
-      const { [questionId]: selectedQuestionAnswers = [] } = selectedAnswers;
-    
-      const updatedAnswers = checked
-        ? type === "radio"
-          ? [userAnswer]
-          : [...selectedQuestionAnswers, userAnswer]
-        : selectedQuestionAnswers.filter((answer) => answer !== userAnswer);
-    
-      const updatedSelectedAnswers = {
-        ...selectedAnswers,
-        [questionId]: updatedAnswers,
-      };
-    
-      dispatch(setSelectedAnswers(updatedSelectedAnswers));
-      console.log(checked);
+  const handleUserAnswer = (
+    questionId: number,
+    userAnswer: string,
+    checked: boolean,
+    type: string
+  ) => {
+    const { [questionId]: selectedQuestionAnswers = [] } = selectedAnswers;
+
+    const updatedAnswers = checked
+      ? type === "radio"
+        ? [userAnswer]
+        : [...selectedQuestionAnswers, userAnswer]
+      : selectedQuestionAnswers.filter((answer) => answer !== userAnswer);
+
+    const updatedSelectedAnswers = {
+      ...selectedAnswers,
+      [questionId]: updatedAnswers,
     };
-    
+
+    dispatch(setSelectedAnswers(updatedSelectedAnswers));
+    console.log(checked);
+  };
+  console.log(selectedAnswers);
 
   useEffect(() => {
     const isEmail = localStorage.getItem("saveEmail");
@@ -72,11 +76,7 @@ const Questions = () => {
               <div className="flex items-center gap-2 mb-2 text-xl" key={index}>
                 <input
                   className="w-5 h-5"
-                  type={`${
-                    answer === "true" || answer === "false"
-                      ? "radio"
-                      : "checkbox"
-                  }`}
+                  type={getType(answer)}
                   name={`question-${question.id}`}
                   id={`question-${answer}`}
                   value={answer}
@@ -85,11 +85,7 @@ const Questions = () => {
                       question.id,
                       e.target.value,
                       e.target.checked,
-                      `${
-                        answer === "true" || answer === "false"
-                          ? "radio"
-                          : "checkbox"
-                      }`
+                      getType(answer)
                     )
                   }
                 />
