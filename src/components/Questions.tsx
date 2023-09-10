@@ -17,11 +17,16 @@ const Questions = () => {
     (state: RootState) => state.questions.selectedAnswers
   );
   const questions = useSelector(selectAllQuestions);
-
+    // const newArray = checked
+    //   ? [...updatedSelectedAnswers[questionId], userAnswer]
+    //   : updatedSelectedAnswers[questionId].filter(
+    //       (answer) => answer !== userAnswer
+    //     );
   const handleUserAnswer = (
     questionId: number,
     userAnswer: string,
-    checked: boolean
+    checked: boolean,
+    type: string
   ) => {
     const updatedSelectedAnswers = { ...selectedAnswers };
 
@@ -29,15 +34,25 @@ const Questions = () => {
       updatedSelectedAnswers[questionId] = [];
     }
 
-    const newArray = checked
-      ? [...updatedSelectedAnswers[questionId], userAnswer]
-      : updatedSelectedAnswers[questionId].filter(
-          (answer) => answer !== userAnswer
-        );
+
+
+    let newArray;
+
+    if (checked) {
+      if (type === "radio") {
+        newArray = updatedSelectedAnswers[questionId] = [];
+        newArray = [...updatedSelectedAnswers[questionId], userAnswer];
+      } else newArray = [...updatedSelectedAnswers[questionId], userAnswer];
+    } else {
+      newArray = updatedSelectedAnswers[questionId].filter(
+        (answer) => answer !== userAnswer
+      );
+    }
 
     updatedSelectedAnswers[questionId] = newArray;
 
     dispatch(setSelectedAnswers(updatedSelectedAnswers));
+    console.log(checked);
   };
 
   console.log(selectedAnswers);
@@ -85,12 +100,18 @@ const Questions = () => {
                       : "checkbox"
                   }`}
                   name={`question-${question.id}`}
+                  id={`question-${answer}`}
                   value={answer}
                   onChange={(e) =>
                     handleUserAnswer(
                       question.id,
                       e.target.value,
-                      e.target.checked
+                      e.target.checked,
+                      `${
+                        answer === "true" || answer === "false"
+                          ? "radio"
+                          : "checkbox"
+                      }`
                     )
                   }
                 />
