@@ -17,52 +17,30 @@ const Questions = () => {
     (state: RootState) => state.questions.selectedAnswers
   );
   const questions = useSelector(selectAllQuestions);
-    // const newArray = checked
-    //   ? [...updatedSelectedAnswers[questionId], userAnswer]
-    //   : updatedSelectedAnswers[questionId].filter(
-    //       (answer) => answer !== userAnswer
-    //     );
-  const handleUserAnswer = (
-    questionId: number,
-    userAnswer: string,
-    checked: boolean,
-    type: string
-  ) => {
-    const updatedSelectedAnswers = { ...selectedAnswers };
 
-    if (!updatedSelectedAnswers[questionId]) {
-      updatedSelectedAnswers[questionId] = [];
-    }
-
-
-
-    let newArray;
-
-    if (checked) {
-      if (type === "radio") {
-        newArray = updatedSelectedAnswers[questionId] = [];
-        newArray = [...updatedSelectedAnswers[questionId], userAnswer];
-      } else newArray = [...updatedSelectedAnswers[questionId], userAnswer];
-    } else {
-      newArray = updatedSelectedAnswers[questionId].filter(
-        (answer) => answer !== userAnswer
-      );
-    }
-
-    updatedSelectedAnswers[questionId] = newArray;
-
-    dispatch(setSelectedAnswers(updatedSelectedAnswers));
-    console.log(checked);
-  };
-
-  console.log(selectedAnswers);
-  // const getkey=()=>{
-  //   const keys = Object.keys(selectedAnswers);
-  // console.log(`key is ${keys}`);
-  //   console.log(selectedAnswers[10])
-  // }
-
-  console.log(selectedAnswers);
+    const handleUserAnswer = (
+      questionId: number,
+      userAnswer: string,
+      checked: boolean,
+      type: string
+    ) => {
+      const { [questionId]: selectedQuestionAnswers = [] } = selectedAnswers;
+    
+      const updatedAnswers = checked
+        ? type === "radio"
+          ? [userAnswer]
+          : [...selectedQuestionAnswers, userAnswer]
+        : selectedQuestionAnswers.filter((answer) => answer !== userAnswer);
+    
+      const updatedSelectedAnswers = {
+        ...selectedAnswers,
+        [questionId]: updatedAnswers,
+      };
+    
+      dispatch(setSelectedAnswers(updatedSelectedAnswers));
+      console.log(checked);
+    };
+    
 
   useEffect(() => {
     const isEmail = localStorage.getItem("saveEmail");
