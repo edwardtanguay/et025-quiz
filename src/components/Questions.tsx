@@ -3,96 +3,51 @@ import {
   selectAllQuestions,
   setEmail,
   setFullName,
+  setSelectedAnswers,
 } from "../reducers/quiz/QuizReducer";
 import { RootState } from "../store";
 import AlertDelete from "./AlertDelete";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Questions = () => {
   const dispatch = useDispatch();
   const email = useSelector((state: RootState) => state.questions.email);
   const fullName = useSelector((state: RootState) => state.questions.fullName);
-
+  const selectedAnswers = useSelector(
+    (state: RootState) => state.questions.selectedAnswers
+  );
   const questions = useSelector(selectAllQuestions);
-  const [selectedAnswers, setSelectedAnswers] = useState<{
-    [key: number]: string[];
-  }>({});
 
-  const [userAnswers, setUserAnswers] = useState<{ [key: number]: string }>({});
-
-  // const handleUserAnswer = (questionId: number, userAnswer: string) => {
-  //   setUserAnswers((prevAnswers) => ({
-  //     ...prevAnswers,
-  //     [questionId]: userAnswer,
-  //   }));
-
-  // };
   const handleUserAnswer = (
     questionId: number,
     userAnswer: string,
     checked: boolean
   ) => {
-    setSelectedAnswers((prevSelectedAnswers) => {
-      const updatedSelectedAnswers = { ...prevSelectedAnswers };
+    const updatedSelectedAnswers = { ...selectedAnswers };
 
-      if (checked) {
-        if (!updatedSelectedAnswers[questionId]) {
-          updatedSelectedAnswers[questionId] = [];
-        }
-        updatedSelectedAnswers[questionId].push(userAnswer);
-      } else {
-        if (updatedSelectedAnswers[questionId]) {
-          updatedSelectedAnswers[questionId] = updatedSelectedAnswers[
-            questionId
-          ].filter((answer) => answer !== userAnswer);
-        }
-      }
+    if (!updatedSelectedAnswers[questionId]) {
+      updatedSelectedAnswers[questionId] = [];
+    }
 
-      return updatedSelectedAnswers;
-    });
+    const newArray = checked
+      ? [...updatedSelectedAnswers[questionId], userAnswer]
+      : updatedSelectedAnswers[questionId].filter(
+          (answer) => answer !== userAnswer
+        );
+
+    updatedSelectedAnswers[questionId] = newArray;
+
+    dispatch(setSelectedAnswers(updatedSelectedAnswers));
   };
-  console.log(userAnswers);
 
   console.log(selectedAnswers);
-  const compareAnswers = (questionId: number) => {
-    const userAnswer = userAnswers[questionId];
-    const correctAnswers = questions.find(
-      (q) => q.id === questionId
-    )?.correct_answer;
-    if (!correctAnswers) {
-      return false;
-    }
-    const isCorrect = correctAnswers.every(
-      (correctAnswer) => userAnswer.indexOf(correctAnswer) !== -1
-    );
+  // const getkey=()=>{
+  //   const keys = Object.keys(selectedAnswers);
+  // console.log(`key is ${keys}`);
+  //   console.log(selectedAnswers[10])
+  // }
 
-    return isCorrect;
-  };
-
-  const handleSubmitAnswers = () => {
-    let correctCount = 0;
-    let incorrectCount = 0;
-
-    const results = questions.map((question) => {
-      const questionId = question.id;
-      const isCorrect = compareAnswers(questionId);
-
-      if (isCorrect) {
-        correctCount++;
-      } else {
-        incorrectCount++;
-      }
-
-      return {
-        questionId,
-        isCorrect,
-      };
-    });
-
-    alert(
-      `تعداد جواب‌های صحیح: ${correctCount}\nتعداد جواب‌های نادرست: ${incorrectCount}`
-    );
-  };
+  console.log(selectedAnswers);
 
   useEffect(() => {
     const isEmail = localStorage.getItem("saveEmail");
@@ -146,10 +101,7 @@ const Questions = () => {
         </div>
       ))}
       <div className="flex justify-between items-center">
-        <button
-          className="bg-GREEN600 text-FOREGROUND hover:text-GREEN600 hover:bg-FOREGROUND  px-8 py-2 rounded-lg font-Viga duration-300 shadow-lg shadow-BACKGROUND_DARK"
-          onClick={handleSubmitAnswers}
-        >
+        <button className="bg-GREEN600 text-FOREGROUND hover:text-GREEN600 hover:bg-FOREGROUND  px-8 py-2 rounded-lg font-Viga duration-300 shadow-lg shadow-BACKGROUND_DARK">
           Submit
         </button>
         <AlertDelete />
