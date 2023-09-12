@@ -61,5 +61,7 @@ const quizSlice = createSlice({
 export const selectAllQuestions = (state: RootState) =>
   state.questions.questions;
 
+  export const selectAllCorrectAnswer=(state:RootState)=>state.questions.questions.map((question)=>question.correct_answer)
+
 export const { setEmail, setFullName, setSelectedAnswers } = quizSlice.actions;
 export default quizSlice.reducer;

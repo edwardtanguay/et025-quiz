@@ -50,7 +50,7 @@ const DownCounter = () => {
     }
 
     return () => clearInterval(interval);
-  }, [isTimerStart,]);
+  }, [isTimerStart]);
 
   return (
     <div className="font-Viga text-sm md:text-xl py-2 text-FOREGROUND bg-GREEN500 px-4 rounded-lg ">{`${hours.toString().padStart(2, "0")} : ${minutes

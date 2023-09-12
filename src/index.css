@@ -15,4 +15,7 @@
   .input{
     @apply py-2 text-slate-800 outline-0 rounded-lg placeholder:text-slate-500 px-2 border border-green-600
   }
+  .react-confirm-alert{
+    @apply w-3/5
+  }
 }

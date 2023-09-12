@@ -18,10 +18,10 @@ const UsersInfo = () => {
         }
       }, [email, fullName, dispatch]);
   return (
-    <div className="flex justify-between items-center text-FOREGROUND w-full font-Viga text-sm md:text-xl">
+    <div className="flex justify-between items-center  w-full font-Viga text-sm md:text-xl text-ORANGE">
         <span className="hidden md:flex">{fullName}</span>
         <DownCounter />
-        <span>{email}</span>
+        <span className=" ">{email}</span>
     </div>
   )
 }

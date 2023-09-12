@@ -47,7 +47,7 @@ const Questions = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex bg-NEUTRAL700/80 py-4 px-8 justify-between shadow-lg shadow-BACKGROUND_DARK font-Viga md:text-2xl fixed w-full right-0">
+      <div className="flex bg-NEUTRAL700/90 py-4 px-12 justify-between shadow-lg shadow-BACKGROUND_DARK font-Viga md:text-2xl fixed w-full right-0 rounded-b-full">
         <UsersInfo />
       </div>
       <div className="wrapper my-24 flex flex-col gap-6">
@@ -93,7 +93,9 @@ const Questions = () => {
           <button className="bg-GREEN600 text-FOREGROUND hover:text-GREEN600 hover:bg-FOREGROUND  px-8 py-2 rounded-lg font-Viga duration-300 shadow-lg shadow-BACKGROUND_DARK">
             Submit
           </button>
-          <AlertDelete />
+         <div>
+           <AlertDelete />
+         </div>
         </div>
       </div>
     </div>
