@@ -1,24 +1,24 @@
 {
   "questions": [
     {
-      "question": "Die Erde ist der größte Planet des Sonnensystems.",
-      "answers": ["true", "false"],
-      "correct_answer": ["false"],
       "id": 1,
+      "type": "trueFalse",
+      "question": "Die Erde ist der größte Planet des Sonnensystems.|true",
+      "choices": "",
       "score": 5
     },
     {
-      "question": "Die Hauptstadt Brasiliens ist?",
-      "answers": ["Rio de Janeiro", "Brasilia", "Salvador", "Porto Alegre"],
-      "correct_answer": ["Brasilia"],
       "id": 2,
+      "type": "singleAnswer",
+      "question": "Die Hauptstadt Brasiliens ist?",
+      "choices": "Rio de Janeiro, *Brasilia, Salvador, Porto Alegre",
       "score": 5
     },
     {
-      "question": "Welche beiden Länder sind die größten Produzenten von Erdgas?",
-      "answers": ["Russland", "USA", "Iran", "Katar"],
-      "correct_answers": ["Russland", "USA"],
       "id": 3,
+      "type": "multipleAnswer",
+      "question": "Welche beiden Länder sind die größten Produzenten von Erdgas?",
+      "choices": "*Russland, *USA, Iran, Katar",
       "score": 5
     },
     {
