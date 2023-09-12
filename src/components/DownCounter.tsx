@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { selectAllExtraInfo } from "../reducers/extra/ExtraReducer";
 
-interface IDownCounterProps {
-  time: number;
-}
-const DownCounter = ({ time }: IDownCounterProps) => {
+
+const DownCounter = () => {
+    const extraInfo = useSelector(selectAllExtraInfo);
+    const time = extraInfo.time;
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
@@ -48,10 +50,10 @@ const DownCounter = ({ time }: IDownCounterProps) => {
     }
 
     return () => clearInterval(interval);
-  }, [isTimerStart, navigate]);
+  }, [isTimerStart,]);
 
   return (
-    <div>{`${hours.toString().padStart(2, "0")} : ${minutes
+    <div className="font-Viga text-sm md:text-xl py-2 text-FOREGROUND bg-GREEN500 px-4 rounded-lg ">{`${hours.toString().padStart(2, "0")} : ${minutes
       .toString()
       .padStart(2, "0")} : ${seconds.toString().padStart(2, "0")}`}</div>
   );
