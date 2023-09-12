@@ -8,9 +8,13 @@ import {
 import { RootState } from "../store";
 import AlertDelete from "./AlertDelete";
 import { useEffect } from "react";
+import { selectAllExtraInfo } from "../reducers/extra/ExtraReducer";
+import DownCounter from "./DownCounter";
 
 const Questions = () => {
   const dispatch = useDispatch();
+  const extraInfo = useSelector(selectAllExtraInfo);
+  const time=extraInfo.time
   const getType = (answer: string) => {
     return `${answer === "true" || answer === "false" ? "radio" : "checkbox"}`;
   };
@@ -58,6 +62,7 @@ const Questions = () => {
     <div className="flex flex-col gap-8 py-32">
       <div className="flex bg-FOREGROUND py-4 px-8 justify-between rounded-lg shadow-lg shadow-BACKGROUND_DARK font-Viga md:text-2xl">
         <h3>{fullName}</h3>
+        <DownCounter time={time} />
         <h3 className="text-RED500">{email}</h3>
       </div>
       {questions.map((question) => (

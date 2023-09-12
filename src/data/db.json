@@ -151,5 +151,9 @@
       "id": 20,
       "score": 5
     }
-  ]
+  ],
+  "extraInfo": {
+    "time": 1,
+    "totalQuestion": 20
+  }
 }

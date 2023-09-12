@@ -5,3 +5,8 @@ export interface IQuestions {
   correct_answer: string[];
   score: number;
 }
+
+export interface IExtraInfo {
+  time: number;
+  totalQuestion: number;
+}
