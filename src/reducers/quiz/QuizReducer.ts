@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IQuestions } from "../../interface/interfaceQuiz";
+import { IQuestions, ISelectedAnswers } from "../../interface/interfaceQuiz";
 import { getAllQuestions } from "../../services";
 import { RootState } from "../../store";
 
@@ -9,9 +9,7 @@ interface IQuiz {
   error: string | null;
   fullName: string;
   email: string;
-  selectedAnswers: {
-    [key: number]: string[];
-  };
+  selectedAnswers: ISelectedAnswers[];
 }
 
 export const fetchQuiz = createAsyncThunk("/quiz/fetchQuiz", async () => {
@@ -25,7 +23,7 @@ const initialState: IQuiz = {
   error: null,
   fullName: "",
   email: "",
-  selectedAnswers: {},
+  selectedAnswers: [],
 };
 
 const quizSlice = createSlice({
@@ -61,7 +59,8 @@ const quizSlice = createSlice({
 export const selectAllQuestions = (state: RootState) =>
   state.questions.questions;
 
-  export const selectAllCorrectAnswer=(state:RootState)=>state.questions.questions.map((question)=>question.correct_answer)
+export const selectAllCorrectAnswer = (state: RootState) =>
+  state.questions.questions.map((question) => question.correct_answer);
 
 export const { setEmail, setFullName, setSelectedAnswers } = quizSlice.actions;
 export default quizSlice.reducer;

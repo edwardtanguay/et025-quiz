@@ -1,8 +1,6 @@
+import { useState } from "react"; // وارد کردن useState
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectAllQuestions,
-  setSelectedAnswers,
-} from "../reducers/quiz/QuizReducer";
+import { selectAllQuestions } from "../reducers/quiz/QuizReducer";
 import { RootState } from "../store";
 import AlertDelete from "./AlertDelete";
 import UsersInfo from "./UsersInfo";
@@ -14,40 +12,43 @@ const Questions = () => {
     return `${answer === "true" || answer === "false" ? "radio" : "checkbox"}`;
   };
 
-  const selectedAnswers = useSelector(
-    (state: RootState) => state.questions.selectedAnswers
-  );
+ 
+  const [userAnswers, setUserAnswers] = useState<{ [questionId: number]: string[] }>({});
 
   const questions = useSelector(selectAllQuestions);
 
-  const handleUserAnswer = (
-    questionId: number,
-    userAnswer: string,
-    checked: boolean,
-    type: string
-  ) => {
-    const { [questionId]: selectedQuestionAnswers = [] } = selectedAnswers;
+ 
+  const handleAnswerChange = (questionId: number, selectedAnswer: string) => {
+  
+    const updatedUserAnswers = { ...userAnswers };
 
-    const updatedAnswers = checked
-      ? type === "radio"
-        ? [userAnswer]
-        : [...selectedQuestionAnswers, userAnswer]
-      : selectedQuestionAnswers.filter((answer) => answer !== userAnswer);
+ 
+    if (updatedUserAnswers[questionId]) {
+      if (updatedUserAnswers[questionId].includes(selectedAnswer)) {
+       
+        updatedUserAnswers[questionId] = updatedUserAnswers[questionId].filter((answer) => answer !== selectedAnswer);
+      } else {
+       
+        updatedUserAnswers[questionId].push(selectedAnswer);
+      }
+    } else {
+   
+      updatedUserAnswers[questionId] = [selectedAnswer];
+    }
 
-    const updatedSelectedAnswers = {
-      ...selectedAnswers,
-      [questionId]: updatedAnswers,
-    };
-
-    dispatch(setSelectedAnswers(updatedSelectedAnswers));
+  
+    setUserAnswers(updatedUserAnswers);
   };
-  console.log(selectedAnswers);
-  const myArray = Object.values(selectedAnswers);
-  console.log("adelllllllllllllll" + myArray);
 
+
+const submit=()=>{
+ const a=Object.values(userAnswers)
+ a.map((s)=>console.log(s))
+ 
+}
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex bg-NEUTRAL700/90 py-4 px-12 justify-between shadow-lg shadow-BACKGROUND_DARK font-Viga md:text-2xl fixed w-full right-0 rounded-b-full">
+      <div className="flex bg-BLUE500/90 py-4 px-12 justify-between shadow-lg shadow-BACKGROUND_DARK font-Viga md:text-2xl fixed w-full right-0 rounded-b-full">
         <UsersInfo />
       </div>
       <div className="wrapper my-24 flex flex-col gap-6">
@@ -74,14 +75,10 @@ const Questions = () => {
                     name={`question-${question.id}`}
                     id={`question-${answer}`}
                     value={answer}
-                    onChange={(e) =>
-                      handleUserAnswer(
-                        question.id,
-                        e.target.value,
-                        e.target.checked,
-                        getType(answer)
-                      )
-                    }
+                    // هنگامی که تغییرات در ورودی رخ می‌دهد، تابع handleAnswerChange را صدا بزنید
+                    onChange={() => handleAnswerChange(question.id, answer)}
+                    // برای checkbox ها، چک کنید که آیا این پاسخ در پاسخ‌های کاربر برای این سوال وجود دارد یا نه و مطابق با آن تیک بگذارید
+                    checked={userAnswers[question.id]?.includes(answer) || false}
                   />
                   <p>{answer}</p>
                 </div>
@@ -90,12 +87,12 @@ const Questions = () => {
           </div>
         ))}
         <div className="flex justify-between items-center">
-          <button className="bg-GREEN600 text-FOREGROUND hover:text-GREEN600 hover:bg-FOREGROUND  px-8 py-2 rounded-lg font-Viga duration-300 shadow-lg shadow-BACKGROUND_DARK">
+          <button className="bg-GREEN600 text-FOREGROUND hover:text-GREEN600 hover:bg-FOREGROUND  px-8 py-2 rounded-lg font-Viga duration-300 shadow-lg shadow-BACKGROUND_DARK" onClick={submit}>
             Submit
           </button>
-         <div>
-           <AlertDelete />
-         </div>
+          <div>
+            <AlertDelete />
+          </div>
         </div>
       </div>
     </div>

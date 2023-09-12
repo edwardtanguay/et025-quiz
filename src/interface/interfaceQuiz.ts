@@ -10,3 +10,8 @@ export interface IExtraInfo {
   time: number;
   totalQuestion: number;
 }
+
+export interface ISelectedAnswers{
+  id:number
+  userAnswer:string[]
+}
